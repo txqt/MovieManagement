@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Web.Infrastructure;
+﻿namespace MovieManagementSystem.Web.Infrastructure;
 
 public abstract class EndpointGroupBase
 {

@@ -1,7 +1,7 @@
 ﻿using Azure.Identity;
-using ChatApp.Application.Common.Interfaces;
-using ChatApp.Infrastructure.Data;
-using ChatApp.Web.Services;
+using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Infrastructure.Data;
+using MovieManagementSystem.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 
 using NSwag;
@@ -32,7 +32,7 @@ public static class DependencyInjection
 
         builder.Services.AddOpenApiDocument((configure, sp) =>
         {
-            configure.Title = "ChatApp API";
+            configure.Title = "Movie API";
 
             // Add JWT
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme

@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Common.Models;
+﻿namespace MovieManagementSystem.Application.Common.Models;
 
 public class PaginatedList<T>
 {

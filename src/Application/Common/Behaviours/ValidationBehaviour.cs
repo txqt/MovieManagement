@@ -1,6 +1,6 @@
-﻿using ValidationException = ChatApp.Application.Common.Exceptions.ValidationException;
+﻿using ValidationException = MovieManagementSystem.Application.Common.Exceptions.ValidationException;
 
-namespace ChatApp.Application.Common.Behaviours;
+namespace MovieManagementSystem.Application.Common.Behaviours;
 
 public class ValidationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
      where TRequest : notnull

@@ -1,7 +1,7 @@
-﻿using ChatApp.Application.Common.Models;
+﻿using MovieManagementSystem.Application.Common.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace ChatApp.Infrastructure.Identity;
+namespace MovieManagementSystem.Infrastructure.Identity;
 
 public static class IdentityResultExtensions
 {

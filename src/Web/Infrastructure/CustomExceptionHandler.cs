@@ -1,8 +1,8 @@
-﻿using ChatApp.Application.Common.Exceptions;
+﻿using MovieManagementSystem.Application.Common.Exceptions;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ChatApp.Web.Infrastructure;
+namespace MovieManagementSystem.Web.Infrastructure;
 
 public class CustomExceptionHandler : IExceptionHandler
 {

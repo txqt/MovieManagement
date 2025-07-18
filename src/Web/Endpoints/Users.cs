@@ -1,6 +1,6 @@
-﻿using ChatApp.Infrastructure.Identity;
+﻿using MovieManagementSystem.Infrastructure.Identity;
 
-namespace ChatApp.Web.Endpoints;
+namespace MovieManagementSystem.Web.Endpoints;
 
 public class Users : EndpointGroupBase
 {

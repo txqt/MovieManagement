@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.FunctionalTests;
+﻿namespace MovieManagementSystem.Application.FunctionalTests;
 
 public static class TestDatabaseFactory
 {

@@ -1,12 +1,12 @@
 ﻿using System.Data.Common;
-using ChatApp.Infrastructure.Data;
+using MovieManagementSystem.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using Respawn;
 
-namespace ChatApp.Application.FunctionalTests;
+namespace MovieManagementSystem.Application.FunctionalTests;
 
 public class PostgreSQLTestDatabase : ITestDatabase
 {
@@ -21,7 +21,7 @@ public class PostgreSQLTestDatabase : ITestDatabase
             .AddEnvironmentVariables()
             .Build();
 
-        var connectionString = configuration.GetConnectionString("ChatAppDb");
+        var connectionString = configuration.GetConnectionString("MovieDb");
 
         Guard.Against.Null(connectionString);
 

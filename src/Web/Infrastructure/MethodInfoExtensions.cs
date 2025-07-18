@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace ChatApp.Web.Infrastructure;
+namespace MovieManagementSystem.Web.Infrastructure;
 
 public static class MethodInfoExtensions
 {

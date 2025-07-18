@@ -1,10 +1,10 @@
-﻿using ChatApp.Application.Common.Interfaces;
-using ChatApp.Domain.Common;
+﻿using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace ChatApp.Infrastructure.Data.Interceptors;
+namespace MovieManagementSystem.Infrastructure.Data.Interceptors;
 
 public class AuditableEntityInterceptor : SaveChangesInterceptor
 {

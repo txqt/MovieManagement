@@ -1,8 +1,8 @@
-﻿using ChatApp.Application.TodoLists.Commands.CreateTodoList;
-using ChatApp.Application.TodoLists.Commands.DeleteTodoList;
-using ChatApp.Domain.Entities;
+﻿using MovieManagementSystem.Application.TodoLists.Commands.CreateTodoList;
+using MovieManagementSystem.Application.TodoLists.Commands.DeleteTodoList;
+using MovieManagementSystem.Domain.Entities;
 
-namespace ChatApp.Application.FunctionalTests.TodoLists.Commands;
+namespace MovieManagementSystem.Application.FunctionalTests.TodoLists.Commands;
 
 using static Testing;
 

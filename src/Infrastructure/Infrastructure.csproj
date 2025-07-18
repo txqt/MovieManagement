@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>ChatApp.Infrastructure</RootNamespace>
-    <AssemblyName>ChatApp.Infrastructure</AssemblyName>
+    <RootNamespace>MovieManagementSystem.Infrastructure</RootNamespace>
+    <AssemblyName>MovieManagementSystem.Infrastructure</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,10 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Configurations\" />
   </ItemGroup>
 
 </Project>

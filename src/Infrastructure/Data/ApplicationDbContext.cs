@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
-using ChatApp.Application.Common.Interfaces;
-using ChatApp.Infrastructure.Identity;
+using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChatApp.Infrastructure.Data;
+namespace MovieManagementSystem.Infrastructure.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
 {

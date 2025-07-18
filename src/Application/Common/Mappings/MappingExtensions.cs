@@ -1,6 +1,6 @@
-﻿using ChatApp.Application.Common.Models;
+﻿using MovieManagementSystem.Application.Common.Models;
 
-namespace ChatApp.Application.Common.Mappings;
+namespace MovieManagementSystem.Application.Common.Mappings;
 
 public static class MappingExtensions
 {

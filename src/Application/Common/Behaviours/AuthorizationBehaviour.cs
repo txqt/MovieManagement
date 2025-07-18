@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
-using ChatApp.Application.Common.Exceptions;
-using ChatApp.Application.Common.Interfaces;
-using ChatApp.Application.Common.Security;
+using MovieManagementSystem.Application.Common.Exceptions;
+using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Application.Common.Security;
 
-namespace ChatApp.Application.Common.Behaviours;
+namespace MovieManagementSystem.Application.Common.Behaviours;
 
 public class AuthorizationBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {

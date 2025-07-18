@@ -1,8 +1,8 @@
-﻿using ChatApp.Application.Common.Exceptions;
-using ChatApp.Application.TodoLists.Commands.CreateTodoList;
-using ChatApp.Domain.Entities;
+﻿using MovieManagementSystem.Application.Common.Exceptions;
+using MovieManagementSystem.Application.TodoLists.Commands.CreateTodoList;
+using MovieManagementSystem.Domain.Entities;
 
-namespace ChatApp.Application.FunctionalTests.TodoLists.Commands;
+namespace MovieManagementSystem.Application.FunctionalTests.TodoLists.Commands;
 
 using static Testing;
 

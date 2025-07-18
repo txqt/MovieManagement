@@ -1,9 +1,9 @@
-﻿using ChatApp.Application.Common.Exceptions;
+﻿using MovieManagementSystem.Application.Common.Exceptions;
 using FluentAssertions;
 using FluentValidation.Results;
 using NUnit.Framework;
 
-namespace ChatApp.Application.UnitTests.Common.Exceptions;
+namespace MovieManagementSystem.Application.UnitTests.Common.Exceptions;
 
 public class ValidationExceptionTests
 {

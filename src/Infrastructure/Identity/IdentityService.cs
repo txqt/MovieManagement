@@ -1,10 +1,10 @@
-using ChatApp.Application.Common.Interfaces;
-using ChatApp.Application.Common.Models;
+using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Application.Common.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace ChatApp.Infrastructure.Identity;
+namespace MovieManagementSystem.Infrastructure.Identity;
 
 public class IdentityService : IIdentityService
 {

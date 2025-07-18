@@ -1,8 +1,6 @@
-﻿using ChatApp.Application.Common.Interfaces;
-using ChatApp.Domain.Constants;
-using ChatApp.Infrastructure.Data;
-using ChatApp.Infrastructure.Data.Interceptors;
-using ChatApp.Infrastructure.Identity;
+﻿using MovieManagementSystem.Application.Common.Interfaces;using MovieManagementSystem.Infrastructure.Data;
+using MovieManagementSystem.Infrastructure.Data.Interceptors;
+using MovieManagementSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -15,8 +13,8 @@ public static class DependencyInjection
 {
     public static void AddInfrastructureServices(this IHostApplicationBuilder builder)
     {
-        var connectionString = builder.Configuration.GetConnectionString("ChatAppDb");
-        Guard.Against.Null(connectionString, message: "Connection string 'ChatAppDb' not found.");
+        var connectionString = builder.Configuration.GetConnectionString("MovieAppDb");
+        Guard.Against.Null(connectionString, message: "Connection string 'MovieAppDb' not found.");
 
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         builder.Services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
@@ -47,6 +45,8 @@ public static class DependencyInjection
         builder.Services.AddTransient<IIdentityService, IdentityService>();
 
         builder.Services.AddAuthorization(options =>
-            options.AddPolicy(Policies.CanPurge, policy => policy.RequireRole(Roles.Administrator)));
+        {
+            AuthorizationPolicies.ConfigurePolicies(options);
+        });
     }
 }
