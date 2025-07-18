@@ -1,9 +1,9 @@
-﻿using ChatApp.Application.TodoItems.Commands.CreateTodoItem;
-using ChatApp.Application.TodoItems.Commands.DeleteTodoItem;
-using ChatApp.Application.TodoLists.Commands.CreateTodoList;
-using ChatApp.Domain.Entities;
+﻿using MovieManagementSystem.Application.TodoItems.Commands.CreateTodoItem;
+using MovieManagementSystem.Application.TodoItems.Commands.DeleteTodoItem;
+using MovieManagementSystem.Application.TodoLists.Commands.CreateTodoList;
+using MovieManagementSystem.Domain.Entities;
 
-namespace ChatApp.Application.FunctionalTests.TodoItems.Commands;
+namespace MovieManagementSystem.Application.FunctionalTests.TodoItems.Commands;
 
 using static Testing;
 

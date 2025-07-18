@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ChatApp.Domain.Common;
+namespace MovieManagementSystem.Domain.Common;
 
 public abstract class BaseEvent : INotification
 {

@@ -1,12 +1,12 @@
-﻿using ChatApp.Domain.Constants;
-using ChatApp.Infrastructure.Data;
-using ChatApp.Infrastructure.Identity;
+﻿using MovieManagementSystem.Domain.Constants;
+using MovieManagementSystem.Infrastructure.Data;
+using MovieManagementSystem.Infrastructure.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ChatApp.Application.FunctionalTests;
+namespace MovieManagementSystem.Application.FunctionalTests;
 
 [SetUpFixture]
 public partial class Testing

@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Domain.Common;
+﻿namespace MovieManagementSystem.Domain.Common;
 
 public abstract class BaseAuditableEntity : BaseEntity
 {

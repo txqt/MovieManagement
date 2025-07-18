@@ -1,6 +1,6 @@
-﻿using ChatApp.Application.Common.Models;
+﻿using MovieManagementSystem.Application.Common.Models;
 
-namespace ChatApp.Application.Common.Interfaces;
+namespace MovieManagementSystem.Application.Common.Interfaces;
 
 public interface IIdentityService
 {

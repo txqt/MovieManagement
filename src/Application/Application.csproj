@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>ChatApp.Application</RootNamespace>
-    <AssemblyName>ChatApp.Application</AssemblyName>
+    <RootNamespace>MovieManagementSystem.Application</RootNamespace>
+    <AssemblyName>MovieManagementSystem.Application</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

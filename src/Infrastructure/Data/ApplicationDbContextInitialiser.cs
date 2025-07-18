@@ -1,12 +1,12 @@
-﻿using ChatApp.Domain.Constants;
-using ChatApp.Infrastructure.Identity;
+﻿using MovieManagementSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MovieManagementSystem.Application.Common.Security;
 
-namespace ChatApp.Infrastructure.Data;
+namespace MovieManagementSystem.Infrastructure.Data;
 
 public static class InitialiserExtensions
 {
@@ -73,24 +73,124 @@ public class ApplicationDbContextInitialiser
 
     public async Task TrySeedAsync()
     {
-        // Default roles
-        var administratorRole = new IdentityRole(Roles.Administrator);
+        // Seed Roles first
+        await SeedRolesAsync(_roleManager);
 
-        if (_roleManager.Roles.All(r => r.Name != administratorRole.Name))
+        // Seed Users with roles
+        await SeedUsersAsync(_userManager);
+    }
+
+    private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+    {
+        var roles = RoleDefinitions.AllRoles;
+
+        foreach (var role in roles)
         {
-            await _roleManager.CreateAsync(administratorRole);
+            var existingRole = await roleManager.FindByNameAsync(role.Name);
+            if (existingRole == null)
+            {
+                var newRole = new IdentityRole(role.Name);
+                await roleManager.CreateAsync(newRole);
+
+                // Add claims/permissions to roles
+                await AddRoleClaimsAsync(roleManager, role);
+            }
+        }
+    }
+
+    private static async Task AddRoleClaimsAsync(RoleManager<IdentityRole> roleManager, RoleDefinition roleDefinition)
+    {
+        var role = await roleManager.FindByNameAsync(roleDefinition.Name);
+        if (role == null) return;
+
+        // Define permissions for each role
+        var permissions = roleDefinition.Permissions;
+
+        foreach (var permission in permissions)
+        {
+            var existingClaim = await roleManager.GetClaimsAsync(role);
+            if (!existingClaim.Any(c => c.Type == "permission" && c.Value == permission))
+            {
+                await roleManager.AddClaimAsync(role, new System.Security.Claims.Claim("permission", permission));
+            }
+        }
+    }
+
+    private static async Task SeedUsersAsync(UserManager<ApplicationUser> userManager)
+    {
+        // Seed Super Admin
+        var superAdmin = new ApplicationUser
+        {
+            UserName = "superadmin@movieanime.com",
+            Email = "superadmin@movieanime.com",
+            EmailConfirmed = true,
+            FullName = "Super Admin",
+        };
+
+        if (await userManager.FindByEmailAsync(superAdmin.Email) == null)
+        {
+            await userManager.CreateAsync(superAdmin, "SuperAdmin123!");
+            await userManager.AddToRoleAsync(superAdmin, "SuperAdmin");
         }
 
-        // Default users
-        var administrator = new ApplicationUser { UserName = "administrator@localhost", Email = "administrator@localhost" };
-
-        if (_userManager.Users.All(u => u.UserName != administrator.UserName))
+        // Seed Admin
+        var admin = new ApplicationUser
         {
-            await _userManager.CreateAsync(administrator, "Administrator1!");
-            if (!string.IsNullOrWhiteSpace(administratorRole.Name))
-            {
-                await _userManager.AddToRolesAsync(administrator, new [] { administratorRole.Name });
-            }
+            UserName = "admin@movieanime.com",
+            Email = "admin@movieanime.com",
+            EmailConfirmed = true,
+            FullName = "Admin User",
+        };
+
+        if (await userManager.FindByEmailAsync(admin.Email) == null)
+        {
+            await userManager.CreateAsync(admin, "Admin123!");
+            await userManager.AddToRoleAsync(admin, "Admin");
+        }
+
+        // Seed Content Manager
+        var contentManager = new ApplicationUser
+        {
+            UserName = "content@movieanime.com",
+            Email = "content@movieanime.com",
+            EmailConfirmed = true,
+            FullName = "Content Manager",
+        };
+
+        if (await userManager.FindByEmailAsync(contentManager.Email) == null)
+        {
+            await userManager.CreateAsync(contentManager, "Content123!");
+            await userManager.AddToRoleAsync(contentManager, "ContentManager");
+        }
+
+        // Seed Demo Premium User
+        var premiumUser = new ApplicationUser
+        {
+            UserName = "premium@movieanime.com",
+            Email = "premium@movieanime.com",
+            EmailConfirmed = true,
+            FullName = "Premium User",
+        };
+
+        if (await userManager.FindByEmailAsync(premiumUser.Email) == null)
+        {
+            await userManager.CreateAsync(premiumUser, "Premium123!");
+            await userManager.AddToRoleAsync(premiumUser, "PremiumUser");
+        }
+
+        // Seed Demo Regular User
+        var regularUser = new ApplicationUser
+        {
+            UserName = "user@movieanime.com",
+            Email = "user@movieanime.com",
+            EmailConfirmed = true,
+            FullName = "Regular User",
+        };
+
+        if (await userManager.FindByEmailAsync(regularUser.Email) == null)
+        {
+            await userManager.CreateAsync(regularUser, "User123!");
+            await userManager.AddToRoleAsync(regularUser, "User");
         }
     }
 }

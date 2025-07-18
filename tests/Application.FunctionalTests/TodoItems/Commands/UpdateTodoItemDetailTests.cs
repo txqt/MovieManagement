@@ -1,11 +1,11 @@
-﻿using ChatApp.Application.TodoItems.Commands.CreateTodoItem;
-using ChatApp.Application.TodoItems.Commands.UpdateTodoItem;
-using ChatApp.Application.TodoItems.Commands.UpdateTodoItemDetail;
-using ChatApp.Application.TodoLists.Commands.CreateTodoList;
-using ChatApp.Domain.Entities;
-using ChatApp.Domain.Enums;
+﻿using MovieManagementSystem.Application.TodoItems.Commands.CreateTodoItem;
+using MovieManagementSystem.Application.TodoItems.Commands.UpdateTodoItem;
+using MovieManagementSystem.Application.TodoItems.Commands.UpdateTodoItemDetail;
+using MovieManagementSystem.Application.TodoLists.Commands.CreateTodoList;
+using MovieManagementSystem.Domain.Entities;
+using MovieManagementSystem.Domain.Enums;
 
-namespace ChatApp.Application.FunctionalTests.TodoItems.Commands;
+namespace MovieManagementSystem.Application.FunctionalTests.TodoItems.Commands;
 
 using static Testing;
 

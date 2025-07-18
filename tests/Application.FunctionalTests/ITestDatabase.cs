@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
 
-namespace ChatApp.Application.FunctionalTests;
+namespace MovieManagementSystem.Application.FunctionalTests;
 
 public interface ITestDatabase
 {

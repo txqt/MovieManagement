@@ -1,8 +1,8 @@
 ﻿using System.Security.Claims;
 
-using ChatApp.Application.Common.Interfaces;
+using MovieManagementSystem.Application.Common.Interfaces;
 
-namespace ChatApp.Web.Services;
+namespace MovieManagementSystem.Web.Services;
 
 public class CurrentUser : IUser
 {

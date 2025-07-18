@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ChatApp.Application.Common.Behaviours;
+using MovieManagementSystem.Application.Common.Behaviours;
 using Microsoft.Extensions.Hosting;
 
 namespace Microsoft.Extensions.DependencyInjection;

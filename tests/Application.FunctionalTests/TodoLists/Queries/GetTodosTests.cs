@@ -1,8 +1,8 @@
-﻿using ChatApp.Application.TodoLists.Queries.GetTodos;
-using ChatApp.Domain.Entities;
-using ChatApp.Domain.ValueObjects;
+﻿using MovieManagementSystem.Application.TodoLists.Queries.GetTodos;
+using MovieManagementSystem.Domain.Entities;
+using MovieManagementSystem.Domain.ValueObjects;
 
-namespace ChatApp.Application.FunctionalTests.TodoLists.Queries;
+namespace MovieManagementSystem.Application.FunctionalTests.TodoLists.Queries;
 
 using static Testing;
 

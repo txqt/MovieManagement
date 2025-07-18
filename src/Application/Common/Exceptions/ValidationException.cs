@@ -1,6 +1,6 @@
 ﻿using FluentValidation.Results;
 
-namespace ChatApp.Application.Common.Exceptions;
+namespace MovieManagementSystem.Application.Common.Exceptions;
 
 public class ValidationException : Exception
 {

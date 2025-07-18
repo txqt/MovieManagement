@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Common.Exceptions;
+﻿namespace MovieManagementSystem.Application.Common.Exceptions;
 
 public class ForbiddenAccessException : Exception
 {

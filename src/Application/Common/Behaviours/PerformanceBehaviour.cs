@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
-using ChatApp.Application.Common.Interfaces;
+using MovieManagementSystem.Application.Common.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace ChatApp.Application.Common.Behaviours;
+namespace MovieManagementSystem.Application.Common.Behaviours;
 
 public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
 {
@@ -44,7 +44,7 @@ public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequ
                 userName = await _identityService.GetUserNameAsync(userId);
             }
 
-            _logger.LogWarning("ChatApp Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
+            _logger.LogWarning("Movie Long Running Request: {Name} ({ElapsedMilliseconds} milliseconds) {@UserId} {@UserName} {@Request}",
                 requestName, elapsedMilliseconds, userId, userName, request);
         }
 

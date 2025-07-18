@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 
-namespace ChatApp.Web.Infrastructure;
+namespace MovieManagementSystem.Web.Infrastructure;
 
 public static class IEndpointRouteBuilderExtensions
 {

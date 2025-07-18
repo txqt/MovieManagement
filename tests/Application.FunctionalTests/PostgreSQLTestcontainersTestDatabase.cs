@@ -1,5 +1,5 @@
 ﻿using System.Data.Common;
-using ChatApp.Infrastructure.Data;
+using MovieManagementSystem.Infrastructure.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -8,11 +8,11 @@ using Npgsql;
 using Respawn;
 using Testcontainers.PostgreSql;
 
-namespace ChatApp.Application.FunctionalTests;
+namespace MovieManagementSystem.Application.FunctionalTests;
 
 public class PostgreSQLTestcontainersTestDatabase : ITestDatabase
 {
-    private const string DefaultDatabase = "ChatAppTestDb";
+    private const string DefaultDatabase = "MovieTestDb";
     private readonly PostgreSqlContainer _container;
     private DbConnection _connection = null!;
     private string _connectionString = null!;

@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Common.Security;
+﻿namespace MovieManagementSystem.Application.Common.Security;
 
 /// <summary>
 /// Specifies the class this attribute is applied to requires authorization.

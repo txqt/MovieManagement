@@ -1,6 +1,6 @@
-﻿global using ChatApp.Domain.Common;
-//global using ChatApp.Domain.Entities;
-//global using ChatApp.Domain.Enums;
-//global using ChatApp.Domain.Events;
-//global using ChatApp.Domain.Exceptions;
-//global using ChatApp.Domain.ValueObjects;
+﻿global using MovieManagementSystem.Domain.Common;
+//global using MovieManagementSystem.Domain.Entities;
+//global using MovieManagementSystem.Domain.Enums;
+//global using MovieManagementSystem.Domain.Events;
+//global using MovieManagementSystem.Domain.Exceptions;
+//global using MovieManagementSystem.Domain.ValueObjects;

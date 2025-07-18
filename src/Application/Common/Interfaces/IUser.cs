@@ -1,4 +1,4 @@
-﻿namespace ChatApp.Application.Common.Interfaces;
+﻿namespace MovieManagementSystem.Application.Common.Interfaces;
 
 public interface IUser
 {

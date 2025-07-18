@@ -1,6 +1,6 @@
 ﻿using System.Data.Common;
-using ChatApp.Application.Common.Interfaces;
-using ChatApp.Infrastructure.Data;
+using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Infrastructure.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace ChatApp.Application.FunctionalTests;
+namespace MovieManagementSystem.Application.FunctionalTests;
 
 using static Testing;
 
