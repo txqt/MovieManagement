@@ -1,12 +1,18 @@
-// Customize Bootstrap variables
+// Gán lại biến Bootstrap trước khi import
 $primary: #e50914; // Netflix red
 $secondary: #221f1f;
 $dark: #141414;
-$body-bg: #000000;
+$body-bg: #191B24;
 $body-color: #ffffff;
 
-// Import Bootstrap
-@import "bootstrap/scss/bootstrap";
+// Sử dụng @use với bootstrap như một module
+@use "bootstrap" with (
+  $primary: $primary,
+  $secondary: $secondary,
+  $dark: $dark,
+  $body-bg: $body-bg,
+  $body-color: $body-color
+);
 
 // Custom styles cho movie website
 body {

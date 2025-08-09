@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import { Card, Form, Button, Container } from "react-bootstrap";
 
 export default function Login() {
   const { login } = useContext(AuthContext);
@@ -13,7 +14,6 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await api.post("/users/login", { email, password });
-      console.log(res)
       login({
         tokenType: res.data.tokenType,
         accessToken: res.data.accessToken,
@@ -28,11 +28,43 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={handleLogin}>
-      <h2>Login</h2>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
-      <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" />
-      <button type="submit">Login</button>
-    </form>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Card style={{ width: "100%", maxWidth: "400px" }} className="shadow">
+        <Card.Body>
+          <h3 className="text-center mb-4">Đăng nhập</h3>
+          <Form onSubmit={handleLogin}>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Nhập email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="true"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Mật khẩu</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Nhập mật khẩu"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit" className="w-100">
+              Đăng nhập
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 }
