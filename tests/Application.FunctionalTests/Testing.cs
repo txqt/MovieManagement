@@ -1,10 +1,10 @@
-﻿using MovieManagementSystem.Domain.Constants;
-using MovieManagementSystem.Infrastructure.Data;
+﻿using MovieManagementSystem.Infrastructure.Data;
 using MovieManagementSystem.Infrastructure.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using MovieManagementSystem.Application.Common.Security;
 
 namespace MovieManagementSystem.Application.FunctionalTests;
 
@@ -51,15 +51,15 @@ public partial class Testing
 
     public static async Task<string> RunAsDefaultUserAsync()
     {
-        return await RunAsUserAsync("test@local", "Testing1234!", Array.Empty<string>());
+        return await RunAsUserAsync("test@local", "Testing1234!", new List<RoleDefinition>() { RoleDefinitions.User });
     }
 
     public static async Task<string> RunAsAdministratorAsync()
     {
-        return await RunAsUserAsync("administrator@local", "Administrator1234!", new[] { Roles.Administrator });
+        return await RunAsUserAsync("administrator@local", "Administrator1234!", new List<RoleDefinition>() { RoleDefinitions.SuperAdmin});
     }
 
-    public static async Task<string> RunAsUserAsync(string userName, string password, string[] roles)
+    public static async Task<string> RunAsUserAsync(string userName, string password, List<RoleDefinition> roleDefinitions)
     {
         using var scope = _scopeFactory.CreateScope();
 
@@ -68,6 +68,8 @@ public partial class Testing
         var user = new ApplicationUser { UserName = userName, Email = userName };
 
         var result = await userManager.CreateAsync(user, password);
+
+        var roles = roleDefinitions.Select(rd => rd.Name).ToList();
 
         if (roles.Any())
         {

@@ -1,0 +1,27 @@
+// Customize Bootstrap variables
+$primary: #e50914; // Netflix red
+$secondary: #221f1f;
+$dark: #141414;
+$body-bg: #000000;
+$body-color: #ffffff;
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom styles cho movie website
+body {
+  background-color: $body-bg;
+  color: $body-color;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.movie-card {
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}

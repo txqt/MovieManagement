@@ -29,6 +29,7 @@
 
     <ItemGroup>
       <Folder Include="Common\Mappings\" />
+      <Folder Include="Common\Security\" />
     </ItemGroup>
 
 </Project>

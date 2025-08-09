@@ -47,6 +47,20 @@ public static class DependencyInjection
         });
     }
 
+    public static void AddCorsPolicy(this IHostApplicationBuilder builder)
+    {
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:5173")
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+        });
+    }
+
     public static void AddKeyVaultIfConfigured(this IHostApplicationBuilder builder)
     {
         var keyVaultUri = builder.Configuration["AZURE_KEY_VAULT_ENDPOINT"];

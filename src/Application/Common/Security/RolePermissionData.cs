@@ -134,381 +134,284 @@ public static class Permissions
     }
 }
 
-// Định nghĩa role cùng danh sách permission
-public class RoleDefinition
-{
-    public string Name { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
-    public IEnumerable<string> Permissions { get; set; } = new List<string>();
-}
-
 public static class RoleDefinitions
 {
-    public static readonly RoleDefinition SuperAdmin = new RoleDefinition
-    {
-        Name = "SuperAdmin",
-        Description = "System Administrator with full access",
-        Permissions = new[]
-        {
-                Permissions.System.Manage,
-                Permissions.System.Configure,
-                Permissions.System.Backup,
-                Permissions.System.ViewLogs,
-                Permissions.Content.Create,
-                Permissions.Content.Read,
-                Permissions.Content.Update,
-                Permissions.Content.Delete,
-                Permissions.Content.MoviesCreate,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.MoviesUpdate,
-                Permissions.Content.MoviesDelete,
-                Permissions.Content.AnimeCreate,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.AnimeUpdate,
-                Permissions.Content.AnimeDelete,
-                Permissions.Content.SeriesCreate,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.SeriesUpdate,
-                Permissions.Content.SeriesDelete,
-                Permissions.Content.EpisodesCreate,
-                Permissions.Content.EpisodesRead,
-                Permissions.Content.EpisodesUpdate,
-                Permissions.Content.EpisodesDelete,
-                Permissions.Content.GenresCreate,
-                Permissions.Content.GenresRead,
-                Permissions.Content.GenresUpdate,
-                Permissions.Content.GenresDelete,
-                Permissions.Content.CategoriesCreate,
-                Permissions.Content.CategoriesRead,
-                Permissions.Content.CategoriesUpdate,
-                Permissions.Content.CategoriesDelete,
-                Permissions.Users.Create,
-                Permissions.Users.Read,
-                Permissions.Users.Update,
-                Permissions.Users.Delete,
-                Permissions.Users.Ban,
-                Permissions.Users.Unban,
-                Permissions.Users.ManageRoles,
-                Permissions.Reviews.Create,
-                Permissions.Reviews.Read,
-                Permissions.Reviews.Update,
-                Permissions.Reviews.Delete,
-                Permissions.Reviews.Moderate,
-                Permissions.Reviews.Approve,
-                Permissions.Reviews.Reject,
-                Permissions.Ratings.Create,
-                Permissions.Ratings.Read,
-                Permissions.Ratings.Update,
-                Permissions.Ratings.Delete,
-                Permissions.Comments.Create,
-                Permissions.Comments.Read,
-                Permissions.Comments.Update,
-                Permissions.Comments.Delete,
-                Permissions.Comments.Moderate,
-                Permissions.Comments.Approve,
-                Permissions.Comments.Reject,
-                Permissions.Subscriptions.Manage,
-                Permissions.Subscriptions.View,
-                Permissions.Analytics.View,
-                Permissions.Analytics.Export,
-                Permissions.Files.Upload,
-                Permissions.Files.Delete,
-                Permissions.Files.Manage,
-                Permissions.Watchlist.Create,
-                Permissions.Watchlist.Read,
-                Permissions.Watchlist.Update,
-                Permissions.Watchlist.Delete,
-                Permissions.Favorites.Create,
-                Permissions.Favorites.Read,
-                Permissions.Favorites.Update,
-                Permissions.Favorites.Delete,
-                Permissions.Quality.SD,
-                Permissions.Quality.HD,
-                Permissions.Quality.UHD4K,
-                Permissions.Quality.UHD8K
-            }
-    };
-
-    public static readonly RoleDefinition Admin = new RoleDefinition
-    {
-        Name = "Admin",
-        Description = "Site Administrator",
-        Permissions = new[]
-        {
-                Permissions.Content.Create,
-                Permissions.Content.Read,
-                Permissions.Content.Update,
-                Permissions.Content.Delete,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.MoviesUpdate,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.AnimeUpdate,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.SeriesUpdate,
-                Permissions.Content.EpisodesRead,
-                Permissions.Content.EpisodesUpdate,
-                Permissions.Content.GenresRead,
-                Permissions.Content.GenresUpdate,
-                Permissions.Content.CategoriesRead,
-                Permissions.Content.CategoriesUpdate,
-                Permissions.Users.Read,
-                Permissions.Users.Update,
-                Permissions.Users.Ban,
-                Permissions.Users.Unban,
-                Permissions.Reviews.Read,
-                Permissions.Reviews.Update,
-                Permissions.Reviews.Delete,
-                Permissions.Reviews.Moderate,
-                Permissions.Reviews.Approve,
-                Permissions.Reviews.Reject,
-                Permissions.Ratings.Read,
-                Permissions.Ratings.Update,
-                Permissions.Ratings.Delete,
-                Permissions.Comments.Read,
-                Permissions.Comments.Update,
-                Permissions.Comments.Delete,
-                Permissions.Comments.Moderate,
-                Permissions.Comments.Approve,
-                Permissions.Comments.Reject,
-                Permissions.Analytics.View,
-                Permissions.Files.Upload,
-                Permissions.Files.Delete,
-                Permissions.Files.Manage
-            }
-    };
-
-    public static readonly RoleDefinition ContentManager = new RoleDefinition
-    {
-        Name = "ContentManager",
-        Description = "Manage movies, anime, and content",
-        Permissions = new[]
-        {
-                Permissions.Content.Create,
-                Permissions.Content.Read,
-                Permissions.Content.Update,
-                Permissions.Content.Delete,
-                Permissions.Content.MoviesCreate,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.MoviesUpdate,
-                Permissions.Content.MoviesDelete,
-                Permissions.Content.AnimeCreate,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.AnimeUpdate,
-                Permissions.Content.AnimeDelete,
-                Permissions.Content.SeriesCreate,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.SeriesUpdate,
-                Permissions.Content.SeriesDelete,
-                Permissions.Content.EpisodesCreate,
-                Permissions.Content.EpisodesRead,
-                Permissions.Content.EpisodesUpdate,
-                Permissions.Content.EpisodesDelete,
-                Permissions.Content.GenresCreate,
-                Permissions.Content.GenresRead,
-                Permissions.Content.GenresUpdate,
-                Permissions.Content.GenresDelete,
-                Permissions.Content.CategoriesCreate,
-                Permissions.Content.CategoriesRead,
-                Permissions.Content.CategoriesUpdate,
-                Permissions.Content.CategoriesDelete,
-                Permissions.Files.Upload,
-                Permissions.Files.Delete,
-                Permissions.Files.Manage
-            }
-    };
-
-    public static readonly RoleDefinition ContentModerator = new RoleDefinition
-    {
-        Name = "ContentModerator",
-        Description = "Moderate content and reviews",
-        Permissions = new[]
-        {
-                Permissions.Content.Read,
-                Permissions.Content.Update,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.MoviesUpdate,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.AnimeUpdate,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.SeriesUpdate,
-                Permissions.Content.EpisodesRead,
-                Permissions.Content.EpisodesUpdate,
-                Permissions.Reviews.Read,
-                Permissions.Reviews.Update,
-                Permissions.Reviews.Delete,
-                Permissions.Reviews.Moderate,
-                Permissions.Reviews.Approve,
-                Permissions.Reviews.Reject,
-                Permissions.Ratings.Read,
-                Permissions.Ratings.Update,
-                Permissions.Ratings.Delete,
-                Permissions.Comments.Read,
-                Permissions.Comments.Update,
-                Permissions.Comments.Delete,
-                Permissions.Comments.Moderate,
-                Permissions.Comments.Approve,
-                Permissions.Comments.Reject
-            }
-    };
-
-    public static readonly RoleDefinition ContentEditor = new RoleDefinition
-    {
-        Name = "ContentEditor",
-        Description = "Edit and update content information",
-        Permissions = new[]
-        {
-                Permissions.Content.Read,
-                Permissions.Content.Update,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.MoviesUpdate,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.AnimeUpdate,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.SeriesUpdate,
-                Permissions.Content.EpisodesRead,
-                Permissions.Content.EpisodesUpdate,
-                Permissions.Content.GenresRead,
-                Permissions.Content.GenresUpdate,
-                Permissions.Content.CategoriesRead,
-                Permissions.Content.CategoriesUpdate,
-                Permissions.Files.Upload
-            }
-    };
-
-    public static readonly RoleDefinition UserManager = new RoleDefinition
-    {
-        Name = "UserManager",
-        Description = "Manage user accounts and permissions",
-        Permissions = new[]
-        {
-                Permissions.Users.Create,
-                Permissions.Users.Read,
-                Permissions.Users.Update,
-                Permissions.Users.Delete,
-                Permissions.Users.Ban,
-                Permissions.Users.Unban,
-                Permissions.Users.ManageRoles,
-                Permissions.Analytics.View
-            }
-    };
-
-    public static readonly RoleDefinition CommunityManager = new RoleDefinition
-    {
-        Name = "CommunityManager",
-        Description = "Manage community features and interactions",
-        Permissions = new[]
-        {
-                Permissions.Reviews.Read,
-                Permissions.Reviews.Update,
-                Permissions.Reviews.Delete,
-                Permissions.Reviews.Moderate,
-                Permissions.Reviews.Approve,
-                Permissions.Reviews.Reject,
-                Permissions.Comments.Read,
-                Permissions.Comments.Update,
-                Permissions.Comments.Delete,
-                Permissions.Comments.Moderate,
-                Permissions.Comments.Approve,
-                Permissions.Comments.Reject,
-                Permissions.Users.Read,
-                Permissions.Users.Update,
-                Permissions.Users.Ban,
-                Permissions.Users.Unban
-            }
-    };
-
-    public static readonly RoleDefinition PremiumUser = new RoleDefinition
-    {
-        Name = "PremiumUser",
-        Description = "Premium subscription user",
-        Permissions = new[]
-        {
-                Permissions.Content.Read,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.EpisodesRead,
-                Permissions.Reviews.Create,
-                Permissions.Reviews.Read,
-                Permissions.Reviews.Update,
-                Permissions.Reviews.Delete,
-                Permissions.Comments.Create,
-                Permissions.Comments.Read,
-                Permissions.Comments.Update,
-                Permissions.Comments.Delete,
-                Permissions.Ratings.Create,
-                Permissions.Ratings.Read,
-                Permissions.Ratings.Update,
-                Permissions.Ratings.Delete,
-                Permissions.Watchlist.Create,
-                Permissions.Watchlist.Read,
-                Permissions.Watchlist.Update,
-                Permissions.Watchlist.Delete,
-                Permissions.Favorites.Create,
-                Permissions.Favorites.Read,
-                Permissions.Favorites.Update,
-                Permissions.Favorites.Delete,
-                Permissions.Subscriptions.View,
-                Permissions.Quality.HD,
-                Permissions.Quality.UHD4K,
-                "ads.disable"
-            }
-    };
-
-    public static readonly RoleDefinition VIPUser = new RoleDefinition
-    {
-        Name = "VIPUser",
-        Description = "VIP user with special privileges",
-        Permissions = new[]
-        {
-                Permissions.Content.Read,
-                Permissions.Content.MoviesRead,
-                Permissions.Content.AnimeRead,
-                Permissions.Content.SeriesRead,
-                Permissions.Content.EpisodesRead,
-                Permissions.Reviews.Create,
-                Permissions.Reviews.Read,
-                Permissions.Reviews.Update,
-                Permissions.Reviews.Delete,
-                Permissions.Comments.Create,
-                Permissions.Comments.Read,
-            }
-    };
+    // Base role với permissions cơ bản nhất
     public static readonly RoleDefinition User = new RoleDefinition
     {
         Name = "User",
         Description = "Basic registered user with limited access",
         Permissions = new[]
-    {
-        Permissions.Content.Read,
-        Permissions.Content.MoviesRead,
-        Permissions.Content.AnimeRead,
-        Permissions.Content.SeriesRead,
-        Permissions.Content.EpisodesRead,
-        Permissions.Reviews.Create,
-        Permissions.Reviews.Read,
-        Permissions.Comments.Create,
-        Permissions.Comments.Read,
-        Permissions.Ratings.Create,
-        Permissions.Ratings.Read,
-        Permissions.Watchlist.Read,
-        Permissions.Favorites.Read,
-        Permissions.Quality.SD
-    }
+        {
+            Permissions.Content.Read,
+            Permissions.Content.MoviesRead,
+            Permissions.Content.AnimeRead,
+            Permissions.Content.SeriesRead,
+            Permissions.Content.EpisodesRead,
+            Permissions.Reviews.Create,
+            Permissions.Reviews.Read,
+            Permissions.Comments.Create,
+            Permissions.Comments.Read,
+            Permissions.Ratings.Create,
+            Permissions.Ratings.Read,
+            Permissions.Watchlist.Read,
+            Permissions.Favorites.Read,
+            Permissions.Quality.SD
+        }
     };
 
+    // VIP User inherit từ User và thêm permissions
+    public static readonly RoleDefinition VIPUser = new RoleDefinition
+    {
+        Name = "VIPUser",
+        Description = "VIP user with special privileges",
+        InheritFrom = User,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Reviews.Update,
+            Permissions.Reviews.Delete,
+            Permissions.Comments.Update
+        }
+    };
+
+    // Premium User inherit từ VIP User và thêm permissions
+    public static readonly RoleDefinition PremiumUser = new RoleDefinition
+    {
+        Name = "PremiumUser",
+        Description = "Premium subscription user",
+        InheritFrom = VIPUser,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Comments.Delete,
+            Permissions.Ratings.Update,
+            Permissions.Ratings.Delete,
+            Permissions.Watchlist.Create,
+            Permissions.Watchlist.Update,
+            Permissions.Watchlist.Delete,
+            Permissions.Favorites.Create,
+            Permissions.Favorites.Update,
+            Permissions.Favorites.Delete,
+            Permissions.Subscriptions.View,
+            Permissions.Quality.HD,
+            Permissions.Quality.UHD4K,
+            "ads.disable"
+        }
+    };
+
+    // Content Editor inherit từ Premium User
+    public static readonly RoleDefinition ContentEditor = new RoleDefinition
+    {
+        Name = "ContentEditor",
+        Description = "Edit and update content information",
+        InheritFrom = PremiumUser,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Content.Update,
+            Permissions.Content.MoviesUpdate,
+            Permissions.Content.AnimeUpdate,
+            Permissions.Content.SeriesUpdate,
+            Permissions.Content.EpisodesUpdate,
+            Permissions.Content.GenresRead,
+            Permissions.Content.GenresUpdate,
+            Permissions.Content.CategoriesRead,
+            Permissions.Content.CategoriesUpdate,
+            Permissions.Files.Upload
+        }
+    };
+
+    // Content Moderator inherit từ Content Editor
+    public static readonly RoleDefinition ContentModerator = new RoleDefinition
+    {
+        Name = "ContentModerator",
+        Description = "Moderate content and reviews",
+        InheritFrom = ContentEditor,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Reviews.Moderate,
+            Permissions.Reviews.Approve,
+            Permissions.Reviews.Reject,
+            Permissions.Comments.Moderate,
+            Permissions.Comments.Approve,
+            Permissions.Comments.Reject
+        }
+    };
+
+    // Community Manager inherit từ Content Moderator
+    public static readonly RoleDefinition CommunityManager = new RoleDefinition
+    {
+        Name = "CommunityManager",
+        Description = "Manage community features and interactions",
+        InheritFrom = ContentModerator,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Users.Read,
+            Permissions.Users.Update,
+            Permissions.Users.Ban,
+            Permissions.Users.Unban
+        }
+    };
+
+    // Content Manager inherit từ Content Editor
+    public static readonly RoleDefinition ContentManager = new RoleDefinition
+    {
+        Name = "ContentManager",
+        Description = "Manage movies, anime, and content",
+        InheritFrom = ContentEditor,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Content.Create,
+            Permissions.Content.Delete,
+            Permissions.Content.MoviesCreate,
+            Permissions.Content.MoviesDelete,
+            Permissions.Content.AnimeCreate,
+            Permissions.Content.AnimeDelete,
+            Permissions.Content.SeriesCreate,
+            Permissions.Content.SeriesDelete,
+            Permissions.Content.EpisodesCreate,
+            Permissions.Content.EpisodesDelete,
+            Permissions.Content.GenresCreate,
+            Permissions.Content.GenresDelete,
+            Permissions.Content.CategoriesCreate,
+            Permissions.Content.CategoriesDelete,
+            Permissions.Files.Delete,
+            Permissions.Files.Manage
+        }
+    };
+
+    // User Manager inherit từ Premium User
+    public static readonly RoleDefinition UserManager = new RoleDefinition
+    {
+        Name = "UserManager",
+        Description = "Manage user accounts and permissions",
+        InheritFrom = PremiumUser,
+        AdditionalPermissions = new[]
+        {
+            Permissions.Users.Create,
+            Permissions.Users.Read,
+            Permissions.Users.Update,
+            Permissions.Users.Delete,
+            Permissions.Users.Ban,
+            Permissions.Users.Unban,
+            Permissions.Users.ManageRoles,
+            Permissions.Analytics.View
+        }
+    };
+
+    // Admin inherit từ multiple roles (Content Manager + Community Manager + User Manager)
+    public static readonly RoleDefinition Admin = new RoleDefinition
+    {
+        Name = "Admin",
+        Description = "Site Administrator",
+        InheritFrom = ContentManager,
+        AdditionalInheritFrom = new[] { CommunityManager, UserManager },
+        AdditionalPermissions = new[]
+        {
+            Permissions.Analytics.View
+        }
+    };
+
+    // Super Admin inherit từ Admin và có tất cả permissions
+    public static readonly RoleDefinition SuperAdmin = new RoleDefinition
+    {
+        Name = "SuperAdmin",
+        Description = "System Administrator with full access",
+        InheritFrom = Admin,
+        AdditionalPermissions = new[]
+        {
+            Permissions.System.Manage,
+            Permissions.System.Configure,
+            Permissions.System.Backup,
+            Permissions.System.ViewLogs,
+            Permissions.Analytics.Export,
+            Permissions.Quality.UHD8K
+        }
+    };
 
     public static readonly List<RoleDefinition> AllRoles = new List<RoleDefinition>
     {
-        SuperAdmin,
-        Admin,
-        ContentManager,
-        ContentModerator,
-        ContentEditor,
-        UserManager,
-        CommunityManager,
-        PremiumUser,
+        User,
         VIPUser,
-        User
+        PremiumUser,
+        ContentEditor,
+        ContentModerator,
+        ContentManager,
+        CommunityManager,
+        UserManager,
+        Admin,
+        SuperAdmin
     };
+}
+
+// Cập nhật RoleDefinition class để support inheritance
+public class RoleDefinition
+{
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string[] Permissions { get; set; } = Array.Empty<string>();
+    public RoleDefinition InheritFrom { get; set; } = null!;
+    public RoleDefinition[] AdditionalInheritFrom { get; set; } = Array.Empty<RoleDefinition>();
+    public string[] AdditionalPermissions { get; set; } = Array.Empty<string>();
+
+    // Lazy loading computed permissions
+    private string[]? _computedPermissions;
+    public string[] ComputedPermissions
+    {
+        get
+        {
+            if (_computedPermissions == null)
+            {
+                _computedPermissions = ComputeAllPermissions();
+            }
+            return _computedPermissions;
+        }
+    }
+
+    private string[] ComputeAllPermissions()
+    {
+        var allPermissions = new HashSet<string>();
+
+        // Thêm permissions trực tiếp
+        foreach (var permission in Permissions)
+        {
+            allPermissions.Add(permission);
+        }
+
+        // Thêm permissions từ role kế thừa chính
+        if (InheritFrom != null)
+        {
+            foreach (var permission in InheritFrom.ComputedPermissions)
+            {
+                allPermissions.Add(permission);
+            }
+        }
+
+        // Thêm permissions từ các role kế thừa bổ sung
+        foreach (var inheritedRole in AdditionalInheritFrom)
+        {
+            foreach (var permission in inheritedRole.ComputedPermissions)
+            {
+                allPermissions.Add(permission);
+            }
+        }
+
+        // Thêm permissions bổ sung
+        foreach (var permission in AdditionalPermissions)
+        {
+            allPermissions.Add(permission);
+        }
+
+        return allPermissions.ToArray();
+    }
+
+    // Method để check permission
+    public bool HasPermission(string permission)
+    {
+        return ComputedPermissions.Contains(permission);
+    }
+
+    // Method để reset computed permissions (nếu cần update)
+    public void ResetComputedPermissions()
+    {
+        _computedPermissions = null;
+    }
 }

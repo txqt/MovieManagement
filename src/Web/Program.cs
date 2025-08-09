@@ -7,6 +7,7 @@ builder.AddKeyVaultIfConfigured();
 builder.AddApplicationServices();
 builder.AddInfrastructureServices();
 builder.AddWebServices();
+builder.AddCorsPolicy();
 
 var app = builder.Build();
 
@@ -27,6 +28,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors("CorsPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -36,6 +38,9 @@ app.UseSwaggerUi(settings =>
     settings.DocumentPath = "/api/specification.json";
 });
 
+app.MapRazorPages();
+
+app.MapFallbackToFile("index.html");
 
 app.UseExceptionHandler(options => { });
 

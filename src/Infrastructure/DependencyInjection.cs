@@ -1,4 +1,5 @@
-﻿using MovieManagementSystem.Application.Common.Interfaces;using MovieManagementSystem.Infrastructure.Data;
+﻿using MovieManagementSystem.Application.Common.Interfaces;
+using MovieManagementSystem.Infrastructure.Data;
 using MovieManagementSystem.Infrastructure.Data.Interceptors;
 using MovieManagementSystem.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;

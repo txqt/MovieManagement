@@ -6,6 +6,51 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/test": {
+      "get": {
+        "operationId": "GetPublic",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/test/secure": {
+      "get": {
+        "operationId": "GetSecure",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
+    "/test/policy": {
+      "get": {
+        "operationId": "GetWithPolicy",
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/Users/register": {
       "post": {
         "tags": [
