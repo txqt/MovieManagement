@@ -1,83 +1,173 @@
-import { Navbar, Nav, Container, Form, Button } from 'react-bootstrap'
-import { Search, Film } from 'lucide-react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useState, useContext } from 'react'
-import { AuthContext } from '../context/AuthContext'
-import { Trans } from 'react-i18next';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { Trans, useTranslation } from 'react-i18next';
+
+import {
+  Box,
+  Button,
+  Input,
+  IconButton,
+  Sheet,
+  Typography,
+  Stack,
+  Dropdown,
+  Menu,
+  MenuButton,
+  MenuItem
+} from '@mui/joy';
+import { Search, Film, Menu as MenuIcon } from 'lucide-react';
+import LanguageSwitcher from './LanguageSwitcher';
+import ThemeSwitcher from './ThemeSwitcher';
 
 function Header() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const navigate = useNavigate()
-  const { auth, logout } = useContext(AuthContext)
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+  const { auth, logout } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const handleSearch = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (searchTerm.trim()) {
-      navigate(`/search?q=${encodeURIComponent(searchTerm)}`)
+      navigate(`/search?q=${encodeURIComponent(searchTerm)}`);
     }
-  }
+  };
 
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          <Film className="me-2" />
-          MovieHub
-        </Navbar.Brand>
+    <Sheet
+      component="header"
+      variant="outlined"
+      sx={{
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
+        px: 2,
+        py: 1,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 2,
+        flexWrap: 'wrap', // cho phép xuống dòng khi nhỏ
+      }}
+    >
+      {/* Logo */}
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={1}
+        component={Link}
+        to="/"
+        sx={{ textDecoration: 'none', color: 'inherit' }}
+      >
+        <Film size={20} />
+        <Typography level="title-lg">MovieHub</Typography>
+      </Stack>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      {/* Menu responsive */}
+      <Stack
+        direction="row"
+        spacing={2}
+        sx={{
+          flexGrow: 1,
+          ml: 4,
+          display: { xs: 'none', md: 'flex' }, // Ẩn menu khi nhỏ hơn md
+        }}
+      >
+        <Button component={Link} to="/" variant="plain">
+          <Trans i18nKey={'title'} ns="home" />
+        </Button>
+        <Button component={Link} to="/category/action" variant="plain">
+          {t('header:categories.action')}
+        </Button>
+        <Button component={Link} to="/category/comedy" variant="plain">
+          {t('header:categories.comedy')}
+        </Button>
+        <Button component={Link} to="/category/horror" variant="plain">
+          {t('header:categories.horror')}
+        </Button>
+      </Stack>
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/"><Trans i18nKey={'title'} ns='home' /></Nav.Link>
-            <Nav.Link as={Link} to="/category/action"><Trans i18nKey={'categories.action'} ns='header' /></Nav.Link>
-            <Nav.Link as={Link} to="/category/comedy"><Trans i18nKey={'categories.comedy'} ns='header' /></Nav.Link>
-            <Nav.Link as={Link} to="/category/horror"><Trans i18nKey={'categories.horror'} ns='header' /></Nav.Link>
-          </Nav>
+      {/* Menu icon cho mobile */}
+      <Box sx={{ display: { xs: 'block', md: 'none' } }}>
+        <Dropdown>
+          <MenuButton variant="soft">
+            <MenuIcon size={20} />
+          </MenuButton>
+          <Menu>
+            <MenuItem component={Link} to="/">
+              <Trans i18nKey={'title'} ns="home" />
+            </MenuItem>
+            <MenuItem component={Link} to="/category/action">
+              {t('header:categories.action')}
+            </MenuItem>
+            <MenuItem component={Link} to="/category/comedy">
+              {t('header:categories.comedy')}
+            </MenuItem>
+            <MenuItem component={Link} to="/category/horror">
+              {t('header:categories.horror')}
+            </MenuItem>
+          </Menu>
+        </Dropdown>
+      </Box>
 
-          <Form className="d-flex me-3" onSubmit={handleSearch}>
-            <Form.Control
-              type="search"
-              placeholder="Tìm phim..."
-              className="me-2"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Button variant="outline-light" type="submit">
-              <Search size={18} />
+      {/* Search */}
+      <Box
+        component="form"
+        onSubmit={handleSearch}
+        sx={{
+          display: 'flex',
+          gap: 1,
+          flexGrow: { xs: 1, md: 0 },
+          order: { xs: 3, md: 0 },
+          width: { xs: '100%', md: 'auto' },
+        }}
+      >
+        <Input
+          placeholder={t('header:searchMovieText')}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          size="sm"
+          sx={{ flex: 1, marginLeft: { xs: 2, md: 0 }}}
+        />
+        <IconButton type="submit" variant="soft" color="neutral">
+          <Search size={18} />
+        </IconButton>
+      </Box>
+
+      {/* Auth buttons */}
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={1}
+        sx={{
+          ml: 2,
+          order: { xs: 2, md: 0 },
+          width: { xs: '100%', sm: 'auto' },
+        }}
+      >
+        {!auth ? (
+          <>
+            <Button component={Link} to="/login" variant="outlined" size="sm">
+              {t('loginButtonText')}
             </Button>
-          </Form>
-
-          {!auth ? (
-            <div className="d-flex">
-              <Button
-                variant="outline-light"
-                className="me-2"
-                as={Link}
-                to="/login"
-              >
-                Đăng nhập
-              </Button>
-              <Button
-                variant="light"
-                as={Link}
-                to="/register"
-              >
-                Đăng ký
-              </Button>
-            </div>
-          ) : (
-            <Button
-              variant="outline-light"
-              onClick={logout}
-            >
-              Đăng xuất
+            <Button component={Link} to="/register" variant="solid" size="sm">
+              {t('registerButtonText')}
             </Button>
-          )}
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  )
+          </>
+        ) : (
+          <Button onClick={logout} variant="outlined" size="sm">
+            {t('logoutButtonText')}
+          </Button>
+        )}
+      </Stack>
+
+      {/* Language & Theme */}
+      <Box sx={{ ml: 2, order: { xs: 4, md: 0 } }}>
+        <LanguageSwitcher />
+      </Box>
+      <Box sx={{ ml: 1, order: { xs: 5, md: 0 } }}>
+        <ThemeSwitcher />
+      </Box>
+    </Sheet>
+  );
 }
 
-export default Header
+export default Header;

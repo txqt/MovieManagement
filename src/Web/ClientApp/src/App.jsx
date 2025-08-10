@@ -1,13 +1,29 @@
-import Header from './components/Header'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Profile from './pages/Profile'
+import PrivateRoute from './components/PrivateRoute'
+import BaseLayout from './components/BaseLayout'
+import { CssVarsProvider } from '@mui/joy';
 
-function App() {
+export default function App() {
   return (
-      <div className="App min-vh-100 d-flex flex-column">
-        <Header />
-        <main className="flex-grow-1">
-        </main>
-      </div>
+    <CssVarsProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<BaseLayout />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </CssVarsProvider>
   )
 }
-
-export default App

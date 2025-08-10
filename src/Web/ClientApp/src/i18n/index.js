@@ -10,7 +10,6 @@ i18n
   .use(initReactI18next) // pass i18n instance to react-i18next
   .init({
     fallbackLng: 'en',
-    debug: true,
     lng:"en",
     ns: ['common', 'home', 'header'], // namespaces
     defaultNS: 'common',

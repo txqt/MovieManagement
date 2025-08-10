@@ -1,38 +1,27 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './index.css'
-import App from './App.jsx'
-import 'bootstrap/dist/css/bootstrap.min.css'
+import { CssVarsProvider } from '@mui/joy'
+
 import './index.css'
 import './styles/main.scss'
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import Profile from "./pages/Profile.jsx";
-import PrivateRoute from "./components/PrivateRoute.jsx";
-import { AuthProvider } from "./context/AuthContext";
-import i18n from './i18n';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-i18n.on("initialized", () => {
-  createRoot(document.getElementById('root')).render(
-    <StrictMode>
+import App from './App'
+import './i18n'
+
+import { AuthProvider } from './context/AuthContext'
+import { LanguageProvider } from './context/LanguageContext'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <CssVarsProvider>
       <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<App />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
+        <LanguageProvider>
+          <Suspense fallback={<div>Đang tải...</div>}>
+            <App />
+          </Suspense>
+        </LanguageProvider>
       </AuthProvider>
-    </StrictMode>
-  )
-})
+    </CssVarsProvider>
+  </StrictMode>
+)

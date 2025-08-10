@@ -1,4 +1,7 @@
 {
   "welcome": "Welcome",
-  "logout": "Logout"
+  "loginButtonText": "Login",
+  "registerButtonText": "Register",
+  "logoutButtonText": "Logout",
+  "changeThemeButtonText": "bi bi-sunset"
 }
