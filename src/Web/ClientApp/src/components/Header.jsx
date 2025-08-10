@@ -72,9 +72,6 @@ function Header() {
           display: { xs: 'none', md: 'flex' }, // Ẩn menu khi nhỏ hơn md
         }}
       >
-        <Button component={Link} to="/" variant="plain">
-          <Trans i18nKey={'title'} ns="home" />
-        </Button>
         <Button component={Link} to="/category/action" variant="plain">
           {t('header:categories.action')}
         </Button>

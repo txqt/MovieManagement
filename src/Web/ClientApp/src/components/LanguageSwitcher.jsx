@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Dropdown } from 'react-bootstrap';
+import { Button, Menu, MenuItem, Divider, Typography } from '@mui/joy';
 import { useLanguage } from '../context/LanguageContext';
 
 function LanguageSwitcher() {
@@ -14,81 +14,117 @@ function LanguageSwitcher() {
     changed
   } = useLanguage();
 
+  const [anchorEl, setAnchorEl] = useState(null);
   const [showDefaultList, setShowDefaultList] = useState(false);
   const [showFallbackList, setShowFallbackList] = useState(false);
 
-  return (
-    <Dropdown align="end" autoClose="outside">
-      <Dropdown.Toggle variant="light" size="sm" id="dropdown-language">
-        🌐 {defaultLang.toUpperCase()} / {fallbackLang.toUpperCase()}
-      </Dropdown.Toggle>
+  const open = Boolean(anchorEl);
 
-      <Dropdown.Menu style={{ minWidth: '220px' }}>
-        {/* Nút mở danh sách Default */}
-        <Dropdown.Item
-          onClick={(e) => {
-            e.preventDefault();
+  const handleToggleMenu = (event) => {
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+    setShowDefaultList(false);
+    setShowFallbackList(false);
+  };
+
+  return (
+    <>
+      <Button
+        variant="outlined"
+        size="sm"
+        onClick={handleToggleMenu}
+        aria-controls={open ? 'language-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+      >
+        🌐 {defaultLang.toUpperCase()} / {fallbackLang.toUpperCase()}
+      </Button>
+
+      <Menu
+        id="language-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={() => setAnchorEl(null)}
+        placement="bottom-end"
+        variant="outlined"
+        sx={{ minWidth: 220 }}
+      >
+        {/* Default Language Toggle */}
+        <MenuItem
+          onClick={() => {
             setShowDefaultList(!showDefaultList);
             setShowFallbackList(false);
           }}
+          sx={{ justifyContent: 'space-between' }}
         >
-          📌 Default Language: <strong>{defaultLang.toUpperCase()}</strong>
-        </Dropdown.Item>
+          <Typography>
+            📌 Default Language: <strong>{defaultLang.toUpperCase()}</strong>
+          </Typography>
+          <Typography fontSize="sm">{showDefaultList ? '▲' : '▼'}</Typography>
+        </MenuItem>
+
         {showDefaultList &&
           languages.map(lang => (
-            <Dropdown.Item
+            <MenuItem
               key={`def-${lang.code}`}
-              active={defaultLang === lang.code}
-              onClick={(e) => {
-                e.preventDefault();
-                selectDefaultLanguage(lang.code);
-              }}
-              className="ps-4"
+              selected={defaultLang === lang.code}
+              onClick={() => selectDefaultLanguage(lang.code)}
+              sx={{ pl: 4 }}
             >
               {lang.label}
-            </Dropdown.Item>
+            </MenuItem>
           ))}
 
-        {/* Nút mở danh sách Fallback */}
-        <Dropdown.Item
-          onClick={(e) => {
-            e.preventDefault();
+        {/* Fallback Language Toggle */}
+        <MenuItem
+          onClick={() => {
             setShowFallbackList(!showFallbackList);
             setShowDefaultList(false);
           }}
+          sx={{ justifyContent: 'space-between' }}
         >
-          🛟 Fallback Language: <strong>{fallbackLang.toUpperCase()}</strong>
-        </Dropdown.Item>
+          <Typography>
+            🛟 Fallback Language: <strong>{fallbackLang.toUpperCase()}</strong>
+          </Typography>
+          <Typography fontSize="sm">{showFallbackList ? '▲' : '▼'}</Typography>
+        </MenuItem>
+
         {showFallbackList &&
           languages.map(lang => (
-            <Dropdown.Item
+            <MenuItem
               key={`fb-${lang.code}`}
-              active={fallbackLang === lang.code}
-              onClick={(e) => {
-                e.preventDefault();
-                selectFallbackLanguage(lang.code);
-              }}
-              className="ps-4"
+              selected={fallbackLang === lang.code}
+              onClick={() => selectFallbackLanguage(lang.code)}
+              sx={{ pl: 4 }}
             >
               {lang.label}
-            </Dropdown.Item>
+            </MenuItem>
           ))}
 
-        <Dropdown.Divider />
+        <Divider />
 
-        {/* Reload */}
         {changed && (
-          <Dropdown.Item className="text-success" onClick={() => applyChanges()}>
+          <MenuItem
+            onClick={() => {
+              applyChanges();
+              setAnchorEl(null);
+            }}
+            sx={{ color: 'success.main' }}
+          >
             🔄 Reload
-          </Dropdown.Item>
+          </MenuItem>
         )}
 
-        {/* Reset */}
-        <Dropdown.Item className="text-danger" onClick={() => resetLanguageSettings()}>
+        <MenuItem
+          onClick={() => {
+            resetLanguageSettings();
+            setAnchorEl(null);
+          }}
+          sx={{ color: 'danger.main' }}
+        >
           ♻️ Reset to Default
-        </Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+        </MenuItem>
+      </Menu>
+    </>
   );
 }
 

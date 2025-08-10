@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import { Card, Form, Button, Container } from "react-bootstrap";
+import { Card, Typography, Input, Button, Sheet, Stack } from "@mui/joy";
 
 export default function Login() {
   const { login } = useContext(AuthContext);
@@ -28,43 +28,66 @@ export default function Login() {
   };
 
   return (
-    <Container
-      className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+    <Sheet
+      variant="outlined"
+      sx={{
+        width: 400,
+        maxWidth: "100%",
+        mx: "auto",
+        mt: 8,
+        p: 4,
+        borderRadius: "sm",
+        boxShadow: "md",
+        display: "flex",
+        flexDirection: "column",
+      }}
+      component="form"
+      onSubmit={handleLogin}
     >
-      <Card style={{ width: "100%", maxWidth: "400px" }} className="shadow">
-        <Card.Body>
-          <h3 className="text-center mb-4">Đăng nhập</h3>
-          <Form onSubmit={handleLogin}>
-            <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Nhập email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                autoComplete="true"
-              />
-            </Form.Group>
+      <Typography
+        level="h3"
+        textAlign="center"
+        mb={4}
+      >
+        Đăng nhập
+      </Typography>
 
-            <Form.Group className="mb-3" controlId="formPassword">
-              <Form.Label>Mật khẩu</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Nhập mật khẩu"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </Form.Group>
+      <Stack spacing={3}>
+        <div>
+          <Typography level="body1" htmlFor="email" mb={1}>
+            Email
+          </Typography>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Nhập email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+            fullWidth
+          />
+        </div>
 
-            <Button variant="primary" type="submit" className="w-100">
-              Đăng nhập
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-    </Container>
+        <div>
+          <Typography level="body1" htmlFor="password" mb={1}>
+            Mật khẩu
+          </Typography>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Nhập mật khẩu"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            fullWidth
+          />
+        </div>
+
+        <Button type="submit" variant="solid" color="primary" fullWidth>
+          Đăng nhập
+        </Button>
+      </Stack>
+    </Sheet>
   );
 }
