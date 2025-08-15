@@ -19,12 +19,22 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
 
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     
     <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <PackageReference Include="NSwag.AspNetCore" />
     <PackageReference Include="NSwag.MSBuild">
       <PrivateAssets>all</PrivateAssets>
@@ -38,6 +48,10 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Data\" />
   </ItemGroup>
 
   <!-- Auto-generated Open API specification and Angular TypeScript clients -->
@@ -70,5 +84,19 @@
 		</ResolvedFileToPublish>
 	  </ItemGroup>
 	</Target>
+
+  <!-- Build React app for development testing -->
+  <Target Name="DebugBuildReact" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' ">
+    <Message Importance="high" Text="Building React app..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="pnpm install" ContinueOnError="true" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="pnpm run build" ContinueOnError="true" />
+
+    <!-- Copy dist files to wwwroot -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(DistFiles)" DestinationFiles="@(DistFiles->'wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
 
 </Project>

@@ -1,0 +1,8 @@
+{
+    "searchMovieText":"Tìm phim...",
+    "categories": {
+        "action": "Hành động",
+        "comedy": "Hài",
+        "horror": "Kinh dị"
+    }
+}

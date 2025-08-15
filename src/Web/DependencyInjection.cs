@@ -1,9 +1,9 @@
 ﻿using Azure.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using MovieManagementSystem.Application.Common.Interfaces;
 using MovieManagementSystem.Infrastructure.Data;
 using MovieManagementSystem.Web.Services;
-using Microsoft.AspNetCore.Mvc;
-
 using NSwag;
 using NSwag.Generation.Processors.Security;
 
@@ -36,15 +36,25 @@ public static class DependencyInjection
             configure.Title = "Movie API";
 
             // Add JWT
-            configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
-            {
-                Type = OpenApiSecuritySchemeType.ApiKey,
-                Name = "Authorization",
-                In = OpenApiSecurityApiKeyLocation.Header,
-                Description = "Type into the textbox: Bearer {your JWT token}."
-            });
+            //configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
+            //{
+            //    Type = OpenApiSecuritySchemeType.ApiKey,
+            //    Name = "Authorization",
+            //    In = OpenApiSecurityApiKeyLocation.Header,
+            //    Description = "Type into the textbox: Bearer {your JWT token}."
+            //});
 
-            configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+            //configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
+        });
+
+        builder.Services.ConfigureApplicationCookie(options =>
+        {
+            options.ExpireTimeSpan = TimeSpan.FromHours(10);
+            options.LoginPath = "/Identity/Account/Login";
+            options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            options.Cookie.HttpOnly = true;
+            options.Cookie.SameSite = SameSiteMode.Strict;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         });
     }
 

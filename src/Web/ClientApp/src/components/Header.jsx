@@ -19,12 +19,16 @@ import {
 import { Search, Film, Menu as MenuIcon } from 'lucide-react';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeSwitcher from './ThemeSwitcher';
+import LoginButton from './LoginButton'
+import LogoutButton from './LogoutButton'
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const { auth, logout } = useContext(AuthContext);
   const { t } = useTranslation();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -90,9 +94,6 @@ function Header() {
             <MenuIcon size={20} />
           </MenuButton>
           <Menu>
-            <MenuItem component={Link} to="/">
-              <Trans i18nKey={'title'} ns="home" />
-            </MenuItem>
             <MenuItem component={Link} to="/category/action">
               {t('header:categories.action')}
             </MenuItem>
@@ -123,7 +124,7 @@ function Header() {
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           size="sm"
-          sx={{ flex: 1, marginLeft: { xs: 2, md: 0 }}}
+          sx={{ flex: 1, marginLeft: { xs: 2, md: 0 } }}
         />
         <IconButton type="submit" variant="soft" color="neutral">
           <Search size={18} />
@@ -140,19 +141,20 @@ function Header() {
           width: { xs: '100%', sm: 'auto' },
         }}
       >
-        {!auth ? (
+        {!isAuthenticated ? (
           <>
-            <Button component={Link} to="/login" variant="outlined" size="sm">
-              {t('loginButtonText')}
-            </Button>
+            <LoginButton />
             <Button component={Link} to="/register" variant="solid" size="sm">
               {t('registerButtonText')}
             </Button>
           </>
         ) : (
-          <Button onClick={logout} variant="outlined" size="sm">
-            {t('logoutButtonText')}
-          </Button>
+          <>
+          <Button variant="solid" size="sm">
+              {user?.name}
+            </Button>
+            <LogoutButton />
+          </>
         )}
       </Stack>
 

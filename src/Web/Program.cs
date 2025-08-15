@@ -38,15 +38,12 @@ app.UseSwaggerUi(settings =>
     settings.DocumentPath = "/api/specification.json";
 });
 
+app.UseExceptionHandler(options => { });
+
+app.MapEndpoints();
 app.MapRazorPages();
 
 app.MapFallbackToFile("index.html");
-
-app.UseExceptionHandler(options => { });
-
-app.Map("/", () => Results.Redirect("/api"));
-
-app.MapEndpoints();
 
 app.Run();
 

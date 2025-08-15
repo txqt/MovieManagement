@@ -20,6 +20,7 @@ export function AuthProvider({ children }) {
     const next = { ...payload, expiresAt };
     setAuth(next);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    console.log(JSON.stringify(next))
   };
 
   const login = (payload) => {
